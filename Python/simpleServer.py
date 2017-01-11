@@ -1,6 +1,7 @@
 #!/usr/bin/env python
  
 import SimpleHTTPServer, BaseHTTPServer, SocketServer, socket, time, sys
+from SimpleHTTPServer import SimpleHTTPRequestHandler
  
 class ThreadedHTTPServer(SocketServer.ThreadingMixIn,
                          BaseHTTPServer.HTTPServer) :
@@ -12,7 +13,7 @@ class ThreadedHTTPServer(SocketServer.ThreadingMixIn,
     """
     def setDelay(self):
         try:
-            delay = sys.argv[2]
+            delay = float(sys.argv[2])
         except IndexError:
             delay = 0.0
         return delay
